@@ -1,0 +1,148 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Soudio Platform — Prisma Schema  v2.0
+// Phase 2: User System & Dashboard Foundation
+// ─────────────────────────────────────────────────────────────────────────────
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── User ────────────────────────────────────────────────────────────────────
+model User {
+  id            String    @id @default(cuid())
+  firstName     String    @map("first_name")
+  lastName      String    @map("last_name")
+  email         String    @unique
+  phone         String?
+  passwordHash  String    @map("password_hash")
+  avatarUrl     String?   @map("avatar_url")
+  emailVerified DateTime? @map("email_verified")
+  isActive      Boolean   @default(true) @map("is_active")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  subscription     Subscription?
+  images           GeneratedImage[]
+  referralsSent    Referral[]       @relation("ReferralSender")
+  referralReceived Referral?        @relation("ReferralReceiver")
+
+  @@map("users")
+}
+
+// ─── Subscription ─────────────────────────────────────────────────────────────
+model Subscription {
+  id           String             @id @default(cuid())
+  userId       String             @unique @map("user_id")
+  planType     PlanType           @default(STARTER) @map("plan_type")
+  imagesLimit  Int                @default(10) @map("images_limit")
+  imagesUsed   Int                @default(0) @map("images_used")
+  extraCredits Int                @default(0) @map("extra_credits")
+  status       SubscriptionStatus @default(TRIAL)
+  startDate    DateTime           @map("start_date")
+  endDate      DateTime?          @map("end_date")
+  createdAt    DateTime           @default(now()) @map("created_at")
+  updatedAt    DateTime           @updatedAt @map("updated_at")
+
+  // Relations
+  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+
+  @@map("subscriptions")
+}
+
+// ─── Generated Image ─────────────────────────────────────────────────────────
+model GeneratedImage {
+  id           String   @id @default(cuid())
+  userId       String   @map("user_id")
+  studioId     String?  @map("studio_id")
+  patternName  String?  @map("pattern_name")
+  imageUrl     String   @map("image_url")
+  thumbnailUrl String?  @map("thumbnail_url")
+  aspectRatio  String   @default("1:1") @map("aspect_ratio")
+  metadata     Json?
+  isDeleted    Boolean  @default(false) @map("is_deleted")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("generated_images")
+}
+
+// ─── Transaction ──────────────────────────────────────────────────────────────
+model Transaction {
+  id              String            @id @default(cuid())
+  subscriptionId  String            @map("subscription_id")
+  referenceNumber String            @unique @map("reference_number")
+  type            TransactionType
+  amount          Float
+  currency        String            @default("SAR")
+  status          TransactionStatus @default(PENDING)
+  description     String?
+  endDate         DateTime?         @map("end_date")
+  createdAt       DateTime          @default(now()) @map("created_at")
+
+  // Relations
+  subscription    Subscription      @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
+}
+
+// ─── Referral ─────────────────────────────────────────────────────────────────
+model Referral {
+  id            String        @id @default(cuid())
+  senderId      String        @map("sender_id")
+  receiverEmail String        @map("receiver_email")
+  receiverId    String?       @unique @map("receiver_id")
+  status        ReferralStatus @default(PENDING)
+  rewardImages  Int           @default(5) @map("reward_images")
+  createdAt     DateTime      @default(now()) @map("created_at")
+  claimedAt     DateTime?     @map("claimed_at")
+
+  // Relations
+  sender        User          @relation("ReferralSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver      User?         @relation("ReferralReceiver", fields: [receiverId], references: [id], onDelete: SetNull)
+
+  @@map("referrals")
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+enum PlanType {
+  TRIAL
+  STARTER
+  GROWTH
+  PARTNER
+}
+
+enum SubscriptionStatus {
+  TRIAL
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  SUSPENDED
+}
+
+enum TransactionType {
+  SUBSCRIPTION
+  EXTRA_CREDITS
+  REFERRAL_REWARD
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum ReferralStatus {
+  PENDING
+  JOINED
+  REWARDED
+}

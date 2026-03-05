@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سعوديو | SOUDIO — أول استوديو سعودي ذكي لتصوير المنتجات</title>
+  <meta name="description" content="حوّل صور منتجاتك إلى لقطات احترافية في ثوانٍ بالذكاء الاصطناعي. 8 استوديوهات ذكية مصممة للسوق السعودي." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-50:  #f0faf7;
+      --teal-100: #d4f0e9;
+      --teal-200: #abe1d3;
+      --teal-400: #51b89e;
+      --teal-500: #30a084;
+      --teal-600: #1f9478;
+      --teal-700: #187a63;
+      --teal-800: #145f4e;
+      --teal-900: #0e3f34;
+      --amber:    #c8763a;
+      --amber-50: #fdf4ec;
+      --amber-100:#fce4cb;
+      --neutral-50: #fafafa;
+      --neutral-100:#f4f4f5;
+      --neutral-200:#e4e4e7;
+      --neutral-400:#a1a1aa;
+      --neutral-500:#71717a;
+      --neutral-700:#3f3f46;
+      --neutral-800:#27272a;
+      --neutral-900:#18181b;
+      --white: #ffffff;
+      --font: 'Cairo', sans-serif;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,.10);
+      --shadow-teal: 0 4px 24px rgba(31,148,120,.25);
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--neutral-900);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button { font-family: var(--font); cursor: pointer; border: none; outline: none; }
+
+    /* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--neutral-100); }
+    ::-webkit-scrollbar-thumb { background: var(--teal-400); border-radius: 99px; }
+
+    /* ─── Utilities ─────────────────────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--teal-50); color: var(--teal-700);
+      border: 1px solid var(--teal-100); border-radius: 99px;
+      padding: 6px 16px; font-size: 13px; font-weight: 700;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--teal-600), var(--teal-400));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── Buttons ───────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 14px 28px; border-radius: var(--radius-md);
+      font-family: var(--font); font-weight: 700; font-size: 15px;
+      cursor: pointer; transition: all .2s; border: 2px solid transparent;
+    }
+    .btn-primary {
+      background: var(--teal-600); color: var(--white);
+      box-shadow: var(--shadow-teal);
+    }
+    .btn-primary:hover { background: var(--teal-700); transform: translateY(-1px); box-shadow: 0 6px 28px rgba(31,148,120,.35); }
+    .btn-outline {
+      background: transparent; color: var(--teal-600);
+      border-color: var(--teal-600);
+    }
+    .btn-outline:hover { background: var(--teal-50); }
+    .btn-accent {
+      background: var(--amber); color: var(--white);
+      box-shadow: 0 4px 20px rgba(200,118,58,.3);
+    }
+    .btn-accent:hover { background: #b5672e; transform: translateY(-1px); }
+    .btn-ghost { background: rgba(255,255,255,.15); color: var(--white); border-color: rgba(255,255,255,.3); }
+    .btn-ghost:hover { background: rgba(255,255,255,.25); }
+    .btn-lg { padding: 16px 36px; font-size: 16px; border-radius: var(--radius-lg); }
+    .btn-sm { padding: 10px 20px; font-size: 13px; border-radius: var(--radius-sm); }
+
+    /* ─── Navbar ─────────────────────────────────────────────────────────────── */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--neutral-100);
+    }
+    .navbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px; gap: 24px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: var(--teal-600); display: flex; align-items: center;
+      justify-content: center; font-size: 20px; box-shadow: var(--shadow-teal);
+    }
+    .logo-text { line-height: 1; }
+    .logo-ar { font-size: 20px; font-weight: 900; color: var(--neutral-900); }
+    .logo-en { font-size: 9px; font-weight: 700; color: var(--teal-500); letter-spacing: 3px; text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-link {
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      font-size: 14px; font-weight: 600; color: var(--neutral-600);
+      transition: all .15s;
+    }
+    .nav-link:hover { color: var(--teal-600); background: var(--teal-50); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .hamburger { display: none; background: none; padding: 8px; border-radius: 8px; color: var(--neutral-700); }
+    .hamburger:hover { background: var(--neutral-100); }
+    .hamburger svg { width: 22px; height: 22px; stroke: currentColor; fill: none; }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-panel {
+      background: var(--white); width: 300px; height: 100%;
+      margin-right: auto; padding: 24px;
+      display: flex; flex-direction: column; gap: 8px;
+      animation: slideInRight .25s ease;
+    }
+    .mobile-menu-panel .nav-link { display: block; padding: 12px 16px; font-size: 16px; }
+
+    /* ─── Hero ─────────────────────────────────────────────────────────────── */
+    .hero {
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(31,148,120,.12), transparent),
+                  radial-gradient(ellipse 60% 40% at 80% 80%, rgba(200,118,58,.06), transparent),
+                  var(--white);
+      padding: 100px 0 80px;
+      overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(31,148,120,.06) 1px, transparent 1px);
+      background-size: 40px 40px; pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; position: relative;
+    }
+    .hero-badge { margin-bottom: 24px; }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 60px); font-weight: 900; line-height: 1.15;
+      color: var(--neutral-900); margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px; color: var(--neutral-500); line-height: 1.7;
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-stats {
+      display: flex; gap: 32px; padding-top: 32px;
+      border-top: 1px solid var(--neutral-200);
+    }
+    .hero-stat-num {
+      font-size: 28px; font-weight: 900; color: var(--teal-600);
+    }
+    .hero-stat-label { font-size: 13px; color: var(--neutral-500); margin-top: 2px; }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .hero-card-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      width: 100%; max-width: 420px;
+    }
+    .hero-studio-card {
+      background: var(--white); border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-lg); padding: 20px;
+      box-shadow: var(--shadow-md); transition: transform .2s;
+      animation: floatCard var(--float-dur, 4s) ease-in-out infinite var(--float-delay, 0s);
+    }
+    .hero-studio-card:hover { transform: translateY(-4px); }
+    .hero-studio-card .emoji { font-size: 32px; margin-bottom: 10px; }
+    .hero-studio-card h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .hero-studio-card p { font-size: 12px; color: var(--neutral-500); }
+    .hero-studio-card .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      display: inline-block; margin-left: 6px;
+    }
+
+    /* floating badge */
+    .hero-float-badge {
+      position: absolute; background: var(--white);
+      border: 1px solid var(--neutral-100); border-radius: var(--radius-md);
+      padding: 12px 18px; box-shadow: var(--shadow-lg);
+      font-size: 13px; font-weight: 700; white-space: nowrap;
+      animation: floatCard 3s ease-in-out infinite;
+    }
+    .hero-float-badge.top { top: -16px; left: 50%; transform: translateX(-50%); }
+    .hero-float-badge.bottom { bottom: -16px; left: 50%; transform: translateX(-50%); }
+
+    /* ─── Value Props ────────────────────────────────────────────────────────── */
+    .value-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .value-card {
+      background: var(--white); border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-lg); padding: 28px 24px;
+      box-shadow: var(--shadow-sm); transition: all .2s;
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--teal-100); }
+    .value-icon {
+      width: 52px; height: 52px; border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 18px;
+    }
+    .value-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+    .value-card p { font-size: 14px; color: var(--neutral-500); line-height: 1.65; }
+
+    /* ─── Section Header ────────────────────────────────────────────────────── */
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 900; margin: 12px 0 16px; line-height: 1.2; }
+    .section-header p { font-size: 17px; color: var(--neutral-500); max-width: 520px; margin: 0 auto; }
+
+    /* ─── Studios ───────────────────────────────────────────────────────────── */
+    .studios-section { background: var(--neutral-50); }
+    .studios-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .studio-card {
+      background: var(--white); border: 2px solid var(--neutral-100);
+      border-radius: var(--radius-lg); padding: 24px;
+      transition: all .25s; cursor: pointer; position: relative; overflow: hidden;
+    }
+    .studio-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--card-color); opacity: 0; transition: opacity .25s;
+    }
+    .studio-card:hover { transform: translateY(-6px); border-color: var(--card-color-border); box-shadow: var(--card-shadow); }
+    .studio-card:hover::before { opacity: .04; }
+    .studio-emoji { font-size: 36px; margin-bottom: 14px; position: relative; }
+    .studio-badge {
+      position: absolute; top: 16px; left: 16px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--card-color);
+      box-shadow: 0 0 0 3px rgba(255,255,255,1), 0 0 0 5px var(--card-color);
+      animation: pulse 2s infinite;
+    }
+    .studio-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+    .studio-card .role { font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+    .studio-card p { font-size: 13px; color: var(--neutral-500); line-height: 1.6; }
+
+    /* ─── How it Works ──────────────────────────────────────────────────────── */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: ''; position: absolute;
+      top: 36px; right: 12%; left: 12%; height: 2px;
+      background: linear-gradient(90deg, var(--teal-200), var(--teal-100));
+      z-index: 0;
+    }
+    .step-card {
+      text-align: center; position: relative; z-index: 1;
+    }
+    .step-num {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--white); border: 3px solid var(--teal-200);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin: 0 auto 20px; box-shadow: var(--shadow-md);
+      transition: all .2s; font-family: var(--font);
+    }
+    .step-card:hover .step-num { border-color: var(--teal-500); transform: scale(1.08); }
+    .step-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .step-card p { font-size: 14px; color: var(--neutral-500); }
+
+    /* ─── Pricing ───────────────────────────────────────────────────────────── */
+    .pricing-section { background: var(--neutral-50); }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .pricing-card {
+      background: var(--white); border: 2px solid var(--neutral-100);
+      border-radius: var(--radius-xl); padding: 32px 28px;
+      position: relative; transition: all .25s;
+    }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .pricing-card.popular {
+      border-color: var(--teal-300);
+      background: linear-gradient(135deg, rgba(31,148,120,.03), var(--white));
+    }
+    .popular-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--teal-600); color: var(--white);
+      padding: 6px 20px; border-radius: 99px; font-size: 12px; font-weight: 800;
+      white-space: nowrap; box-shadow: var(--shadow-teal);
+    }
+    .pricing-card h3 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+    .pricing-card .subtitle { font-size: 13px; color: var(--neutral-500); margin-bottom: 24px; }
+    .price-amount { font-size: 48px; font-weight: 900; color: var(--neutral-900); line-height: 1; }
+    .price-currency { font-size: 18px; font-weight: 700; color: var(--neutral-500); }
+    .price-period { font-size: 13px; color: var(--neutral-400); margin-top: 4px; margin-bottom: 24px; }
+    .pricing-divider { height: 1px; background: var(--neutral-100); margin: 24px 0; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .pricing-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--neutral-700);
+    }
+    .check-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--teal-50); color: var(--teal-600);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; flex-shrink: 0; font-weight: 900;
+    }
+    .img-count {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--teal-50); color: var(--teal-700);
+      border-radius: 8px; padding: 10px 16px; font-weight: 900;
+      font-size: 16px; margin-bottom: 16px;
+    }
+
+    /* ─── FAQ ──────────────────────────────────────────────────────────────── */
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--white); border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-md); overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; font-size: 15px; font-weight: 700;
+      color: var(--neutral-900); cursor: pointer; background: none;
+      text-align: right; font-family: var(--font); gap: 16px;
+      transition: background .15s;
+    }
+    .faq-q:hover { background: var(--neutral-50); }
+    .faq-q.open { color: var(--teal-600); }
+    .faq-arrow { font-size: 18px; transition: transform .25s; flex-shrink: 0; color: var(--neutral-400); }
+    .faq-q.open .faq-arrow { transform: rotate(180deg); color: var(--teal-500); }
+    .faq-a {
+      padding: 0 24px; max-height: 0; overflow: hidden;
+      font-size: 14px; color: var(--neutral-600); line-height: 1.7;
+      transition: max-height .3s ease, padding .3s ease;
+    }
+    .faq-a.open { max-height: 200px; padding: 0 24px 20px; }
+
+    /* ─── CTA Banner ────────────────────────────────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-600));
+      padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .cta-section .tag { background: rgba(255,255,255,.15); color: var(--white); border-color: rgba(255,255,255,.2); }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); margin: 16px 0; line-height: 1.2; }
+    .cta-section p { font-size: 17px; color: rgba(255,255,255,.8); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+    /* ─── Footer ────────────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--neutral-900); color: rgba(255,255,255,.7);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo .logo-ar { color: var(--white); }
+    .footer-logo .logo-en { color: var(--teal-400); }
+    .footer-desc { font-size: 14px; line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+    .footer-hashtags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hashtag {
+      font-size: 12px; font-weight: 700; color: var(--teal-400);
+      background: rgba(31,148,120,.1); border: 1px solid rgba(31,148,120,.2);
+      padding: 4px 12px; border-radius: 99px;
+    }
+    .footer h4 { color: var(--white); font-size: 15px; font-weight: 800; margin-bottom: 16px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 14px; transition: color .15s; }
+    .footer-links a:hover { color: var(--teal-400); }
+    .footer-divider { height: 1px; background: rgba(255,255,255,.08); margin-bottom: 28px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 13px; flex-wrap: wrap; gap: 12px; }
+    .made-badge { display: flex; align-items: center; gap: 8px; }
+    .made-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+
+    /* ─── Social Icons ──────────────────────────────────────────────────────── */
+    .social-links { display: flex; gap: 10px; margin-top: 16px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+      transition: all .15s; color: var(--white);
+    }
+    .social-btn:hover { background: var(--teal-600); border-color: var(--teal-600); }
+
+    /* ─── Animations ────────────────────────────────────────────────────────── */
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(.9); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+
+    .fade-up { opacity: 0; animation: fadeUp .6s ease forwards; }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .2s; }
+    .delay-3 { animation-delay: .3s; }
+    .delay-4 { animation-delay: .4s; }
+
+    /* ─── Responsive ────────────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .studios-grid { grid-template-columns: repeat(2, 1fr); }
+      .value-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .nav-links, .nav-actions { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .section { padding: 64px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .value-grid { grid-template-columns: 1fr; }
+      .studios-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .hero-stats { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navbar ──────────────────────────────────────────────────────────────── -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">📸</div>
+        <div class="logo-text">
+          <div class="logo-ar">سعوديو</div>
+          <div class="logo-en">SOUDIO</div>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="#studios" class="nav-link">الاستوديوهات</a>
+        <a href="#how" class="nav-link">كيف يعمل</a>
+        <a href="#pricing" class="nav-link">الأسعار</a>
+        <a href="#faq" class="nav-link">الأسئلة الشائعة</a>
+        <a href="#contact" class="nav-link">تواصل معنا</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="app/login" class="btn btn-outline btn-sm">تسجيل الدخول</a>
+        <a href="app/login?tab=signup" class="btn btn-primary btn-sm">ابدأ مجاناً</a>
+      </div>
+
+      <button class="hamburger" onclick="toggleMenu()" aria-label="القائمة">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" onclick="this.classList.remove('open')">
+  <div class="mobile-menu-panel" onclick="event.stopPropagation()">
+    <a href="#" class="logo" style="margin-bottom:16px">
+      <div class="logo-icon">📸</div>
+      <div class="logo-text">
+        <div class="logo-ar">سعوديو</div>
+        <div class="logo-en">SOUDIO</div>
+      </div>
+    </a>
+    <a href="#studios" class="nav-link" onclick="toggleMenu()">الاستوديوهات</a>
+    <a href="#how" class="nav-link" onclick="toggleMenu()">كيف يعمل</a>
+    <a href="#pricing" class="nav-link" onclick="toggleMenu()">الأسعار</a>
+    <a href="#faq" class="nav-link" onclick="toggleMenu()">الأسئلة الشائعة</a>
+    <a href="#contact" class="nav-link" onclick="toggleMenu()">تواصل معنا</a>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+      <a href="app/login" class="btn btn-outline">تسجيل الدخول</a>
+      <a href="app/login?tab=signup" class="btn btn-primary">ابدأ مجاناً</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Hero ─────────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge fade-up">
+          <span class="tag">🇸🇦 أول استوديو سعودي ذكي</span>
+        </div>
+        <h1 class="fade-up delay-1">
+          صور منتجاتك<br />
+          <span class="gradient-text">باحترافية استوديو</span><br />
+          في ثوانٍ معدودة
+        </h1>
+        <p class="fade-up delay-2">
+          بدون كاميرا، بدون مصور، بدون تعقيد.
+          فقط ارفع صورة منتجك واختر استوديوك ذكينا يتولى الباقي.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+          <a href="app/login?tab=signup" class="btn btn-primary btn-lg">
+            🚀 ابدأ التجربة المجانية
+          </a>
+          <a href="#studios" class="btn btn-outline btn-lg">
+            تعرف على الاستوديوهات
+          </a>
+        </div>
+        <div class="hero-stats fade-up delay-4">
+          <div>
+            <div class="hero-stat-num">99%</div>
+            <div class="hero-stat-label">توفير في الوقت</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">30K+</div>
+            <div class="hero-stat-label">متجر يثق بنا</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">8</div>
+            <div class="hero-stat-label">استوديو ذكي</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up delay-2">
+        <div style="position:relative; width:100%">
+          <div class="hero-float-badge top">✨ جودة استوديو احترافي</div>
+          <div class="hero-card-grid">
+            <div class="hero-studio-card" style="--float-dur:4s;--float-delay:0s">
+              <div class="emoji">📸</div>
+              <h4>سعود</h4>
+              <p>تصوير منتجات احترافي</p>
+            </div>
+            <div class="hero-studio-card" style="--float-dur:4.5s;--float-delay:.5s">
+              <div class="emoji">🍽️</div>
+              <h4>نور</h4>
+              <p>تصوير المأكولات</p>
+            </div>
+            <div class="hero-studio-card" style="--float-dur:5s;--float-delay:.25s">
+              <div class="emoji">✂️</div>
+              <h4>فيصل</h4>
+              <p>إزالة الخلفيات</p>
+            </div>
+            <div class="hero-studio-card" style="--float-dur:3.8s;--float-delay:.75s">
+              <div class="emoji">✨</div>
+              <h4>وليد</h4>
+              <p>مشاهد إبداعية</p>
+            </div>
+          </div>
+          <div class="hero-float-badge bottom">⚡ نتيجة في أقل من 30 ثانية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Value Props ──────────────────────────────────────────────────────────── -->
+<section class="section-sm">
+  <div class="container">
+    <div class="value-grid">
+      <div class="value-card fade-up">
+        <div class="value-icon" style="background:#f0faf7">⚡</div>
+        <h3>سريع كالبرق</h3>
+        <p>من رفع الصورة للحصول على النتيجة في أقل من 30 ثانية.</p>
+      </div>
+      <div class="value-card fade-up delay-1">
+        <div class="value-icon" style="background:#eff6ff">🧠</div>
+        <h3>يفهمك بالعربي</h3>
+        <p>مدرّب على السوق السعودي والخليجي وثقافة المستهلك المحلي.</p>
+      </div>
+      <div class="value-card fade-up delay-2">
+        <div class="value-icon" style="background:#fdf4ec">💰</div>
+        <h3>بتكلفة منخفضة</h3>
+        <p>وفّر آلاف الريالات على استوديوهات التصوير التقليدية.</p>
+      </div>
+      <div class="value-card fade-up delay-3">
+        <div class="value-icon" style="background:#f5f3ff">🎨</div>
+        <h3>8 استوديوهات</h3>
+        <p>كل استوديو متخصص بنوع مختلف من الصور والمنتجات.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Studios ──────────────────────────────────────────────────────────────── -->
+<section class="section studios-section" id="studios">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">👨‍🎨 مديرو التصوير الذكاء</span>
+      <h2>8 استوديوهات ذكية<br/>كل واحد متخصص بدوره</h2>
+      <p>اختر الاستوديو الأنسب لمنتجك وانتظر النتيجة الاحترافية</p>
+    </div>
+    <div class="studios-grid">
+      <div class="studio-card fade-up" style="--card-color:#1f9478;--card-color-border:#a3d9cc;--card-shadow:0 8px 32px rgba(31,148,120,.15)">
+        <div class="studio-badge"></div>
+        <div class="studio-emoji">📸</div>
+        <h3>سعود</h3>
+        <div class="role" style="color:#1f9478">محترف التصوير الذكي</div>
+        <p>مخرج صور منتجات نظيفة واحترافية بجودة استوديو. مثالي للعطور والإلكترونيات والتجميل.</p>
+      </div>
+      <div class="studio-card fade-up delay-1" style="--card-color:#2563eb;--card-color-border:#bfdbfe;--card-shadow:0 8px 32px rgba(37,99,235,.12)">
+        <div class="studio-badge" style="background:#2563eb;box-shadow:0 0 0 3px #fff, 0 0 0 5px #2563eb"></div>
+        <div class="studio-emoji">🎞️</div>
+        <h3>خالد</h3>
+        <div class="role" style="color:#2563eb">مجدد الصور الخالدة</div>
+        <p>تحسين الصور القديمة ورفع الدقة وإعادة وضوح الألوان مع الحفاظ على الأصالة.</p>
+      </div>
+      <div class="studio-card fade-up delay-2" style="--card-color:#7c3aed;--card-color-border:#e9d5ff;--card-shadow:0 8px 32px rgba(124,58,237,.12)">
+        <div class="studio-badge" style="background:#7c3aed;box-shadow:0 0 0 3px #fff, 0 0 0 5px #7c3aed"></div>
+        <div class="studio-emoji">✨</div>
+        <h3>وليد</h3>
+        <div class="role" style="color:#7c3aed">مولّد اللقطات الإبداعية</div>
+        <p>توليد مشاهد احترافية للمنتجات عبر وصف نصي موجّه. للحملات والتواصل الاجتماعي.</p>
+      </div>
+      <div class="studio-card fade-up delay-3" style="--card-color:#db2777;--card-color-border:#fbcfe8;--card-shadow:0 8px 32px rgba(219,39,119,.12)">
+        <div class="studio-badge" style="background:#db2777;box-shadow:0 0 0 3px #fff, 0 0 0 5px #db2777"></div>
+        <div class="studio-emoji">🎨</div>
+        <h3>جود</h3>
+        <div class="role" style="color:#db2777">مصممة البانرات الإعلانية</div>
+        <p>تصميم بانرات وإعلانات جاهزة بجودة عالية وأسلوب احترافي للحملات التسويقية.</p>
+      </div>
+      <div class="studio-card fade-up" style="--card-color:#c8763a;--card-color-border:#fce4cb;--card-shadow:0 8px 32px rgba(200,118,58,.15)">
+        <div class="studio-badge" style="background:#c8763a;box-shadow:0 0 0 3px #fff, 0 0 0 5px #c8763a"></div>
+        <div class="studio-emoji">✂️</div>
+        <h3>فيصل</h3>
+        <div class="role" style="color:#c8763a">خبير فصل الخلفيات</div>
+        <p>قص المنتجات والخلفيات بدقة وإنتاج ملفات PNG مثالية للمتاجر والتصاميم.</p>
+      </div>
+      <div class="studio-card fade-up delay-1" style="--card-color:#d97706;--card-color-border:#fde68a;--card-shadow:0 8px 32px rgba(217,119,6,.12)">
+        <div class="studio-badge" style="background:#d97706;box-shadow:0 0 0 3px #fff, 0 0 0 5px #d97706"></div>
+        <div class="studio-emoji">🍽️</div>
+        <h3>نور</h3>
+        <div class="role" style="color:#d97706">مخرجة الطعام البصري</div>
+        <p>تنسيق وإخراج صور المأكولات والمشروبات بأسلوب شهي ومشهد دافئ غني بالتفاصيل.</p>
+      </div>
+      <div class="studio-card fade-up delay-2" style="--card-color:#9333ea;--card-color-border:#e9d5ff;--card-shadow:0 8px 32px rgba(147,51,234,.12)">
+        <div class="studio-badge" style="background:#9333ea;box-shadow:0 0 0 3px #fff, 0 0 0 5px #9333ea"></div>
+        <div class="studio-emoji">👗</div>
+        <h3>زين</h3>
+        <div class="role" style="color:#9333ea">معرض الأزياء والزين</div>
+        <p>إخراج صور الأزياء والإكسسوارات والمجوهرات بأسلوب عصري وفاخر.</p>
+      </div>
+      <div class="studio-card fade-up delay-3" style="--card-color:#0891b2;--card-color-border:#a5f3fc;--card-shadow:0 8px 32px rgba(8,145,178,.12)">
+        <div class="studio-badge" style="background:#0891b2;box-shadow:0 0 0 3px #fff, 0 0 0 5px #0891b2"></div>
+        <div class="studio-emoji">🔀</div>
+        <h3>شهد</h3>
+        <div class="role" style="color:#0891b2">دمج المشهد الذكي</div>
+        <p>دمج المنتجات داخل مشاهد وخلفيات تسويقية جاهزة بإخراج واقعي متوازن.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── How it Works ─────────────────────────────────────────────────────────── -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">🔄 الخطوات</span>
+      <h2>أربع خطوات<br/>وصورك جاهزة</h2>
+      <p>ما أسهله — كل العملية في أقل من دقيقة واحدة</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-num">📤</div>
+        <h3>ارفع صورة منتجك</h3>
+        <p>صورة بسيطة بهاتفك كافية. لا تحتاج معدات خاصة.</p>
+      </div>
+      <div class="step-card fade-up delay-1">
+        <div class="step-num">🎭</div>
+        <h3>اختر استوديوك</h3>
+        <p>8 خيارات — كل واحد مخصص لنوع معين من المنتجات.</p>
+      </div>
+      <div class="step-card fade-up delay-2">
+        <div class="step-num">✅</div>
+        <h3>حدد النمط المناسب</h3>
+        <p>أنماط متعددة لكل استوديو تناسب ذوقك وجمهورك.</p>
+      </div>
+      <div class="step-card fade-up delay-3">
+        <div class="step-num">⬇️</div>
+        <h3>حمّل وانشر</h3>
+        <p>صور بجودة عالية جاهزة للنشر في متجرك فوراً.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Pricing ──────────────────────────────────────────────────────────────── -->
+<section class="section pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">💳 الأسعار</span>
+      <h2>باقات مرنة<br/>لكل حجم متجر</h2>
+      <p>ابدأ مجاناً بدون بطاقة ائتمان وطوّر باقتك متى تريد</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="pricing-card fade-up">
+        <h3>باقة البداية</h3>
+        <p class="subtitle">مناسبة للمشاريع الصغيرة</p>
+        <div class="img-count">📸 10 صور / شهرياً</div>
+        <div>
+          <span class="price-amount">60</span>
+          <span class="price-currency"> ر.س</span>
+        </div>
+        <p class="price-period">شهرياً</p>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span>استوديوهات محدودة</li>
+          <li><span class="check-icon">✓</span>أنماط محدودة</li>
+          <li><span class="check-icon">✓</span>دعم فني</li>
+        </ul>
+        <a href="app/login?tab=signup" class="btn btn-outline" style="width:100%;justify-content:center">اشترك الآن</a>
+      </div>
+
+      <!-- Growth -->
+      <div class="pricing-card popular fade-up delay-1">
+        <div class="popular-badge">الأكثر طلباً ⭐</div>
+        <h3>باقة النمو</h3>
+        <p class="subtitle">مناسبة للمتاجر المتوسطة</p>
+        <div class="img-count">📸 30 صورة / شهرياً</div>
+        <div>
+          <span class="price-amount">115</span>
+          <span class="price-currency"> ر.س</span>
+        </div>
+        <p class="price-period">شهرياً</p>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check-icon" style="background:#d4f0e9;color:#1f9478">✓</span>جميع الاستوديوهات متاحة</li>
+          <li><span class="check-icon" style="background:#d4f0e9;color:#1f9478">✓</span>أنماط محدودة</li>
+          <li><span class="check-icon" style="background:#d4f0e9;color:#1f9478">✓</span>دعم فني</li>
+        </ul>
+        <a href="app/login?tab=signup" class="btn btn-primary" style="width:100%;justify-content:center">اشترك الآن</a>
+      </div>
+
+      <!-- Partner -->
+      <div class="pricing-card fade-up delay-2">
+        <h3>باقة الشريك</h3>
+        <p class="subtitle">مناسبة للعلامات الكبيرة</p>
+        <div class="img-count">📸 100 صورة / شهرياً</div>
+        <div>
+          <span class="price-amount">400</span>
+          <span class="price-currency"> ر.س</span>
+        </div>
+        <p class="price-period">شهرياً</p>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span>جميع الاستوديوهات متاحة</li>
+          <li><span class="check-icon">✓</span>جميع الأنماط متاحة</li>
+          <li><span class="check-icon">✓</span>دعم فني متقدم</li>
+        </ul>
+        <a href="app/login?tab=signup" class="btn btn-outline" style="width:100%;justify-content:center">اشترك الآن</a>
+      </div>
+    </div>
+
+    <!-- Trial note -->
+    <div style="text-align:center;margin-top:32px">
+      <p style="font-size:14px;color:var(--neutral-500)">
+        🛡️ تجربة مجانية تشمل 3 صور — بدون بطاقة ائتمان
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ──────────────────────────────────────────────────────────────────── -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">❓ الأسئلة الشائعة</span>
+      <h2>عندك سؤال؟<br/>عندنا الجواب</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ما هي منصة سعوديو؟ وكيف تساعد متجري الإلكتروني؟
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          سعوديو هي استوديو تصوير ذكي يعمل بالذكاء الاصطناعي، يوفر للتجار إمكانية إنتاج صور احترافية للمنتجات دون الحاجة لاستوديو تصوير فعلي أو خبرة تصميم. تساعدك المنصة على تحسين مظهر متجرك وزيادة جاذبية المنتجات ورفع المبيعات بسرعة.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          هل أحتاج تسجيل دخول لإنشاء الصور؟
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          يمكنك تجربة المنصة مجاناً بعدد محدود من الصور دون اشتراك، لكن للاستمتاع بجميع الميزات يُفضّل إنشاء حساب.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ما هي أفضل مواصفات للصورة قبل رفعها؟
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          يُنصح برفع صور بدقة عالية (لا تقل عن 800×800 بكسل)، بخلفية سادة وإضاءة واضحة. الصيغ المدعومة: JPEG وPNG بحجم أقصى 50 ميغابايت.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          هل استخدام سعوديو مجاني؟
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          تُتيح المنصة تجربة مجانية بعدد محدود من الصور (3–5 صور). للاستخدام الكامل تتوفر باقات اشتراك شهرية مرنة تبدأ من 60 ر.س.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          هل يمكن إلغاء الباقة أو ترقيتها في أي وقت؟
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          نعم، يمكنك الترقية أو الإلغاء في أي وقت دون أي رسوم إضافية.
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="#contact" class="btn btn-outline">عندك سؤال آخر؟ تواصل معنا</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA Banner ────────────────────────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="container">
+    <span class="tag">🚀 ابدأ الآن</span>
+    <h2>جاهز تحوّل صور منتجاتك؟</h2>
+    <p>انضم لآلاف التجار الذين يستخدمون سعوديو يومياً لتجهيز صور متاجرهم</p>
+    <div class="cta-actions">
+      <a href="app/login?tab=signup" class="btn btn-accent btn-lg">
+        🎉 ابدأ تجربتك المجانية
+      </a>
+      <a href="#studios" class="btn btn-ghost btn-lg">
+        تعرف على الاستوديوهات
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ───────────────────────────────────────────────────────────────── -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="logo-icon">📸</div>
+          <div class="logo-text">
+            <div class="logo-ar">سعوديو</div>
+            <div class="logo-en">SOUDIO</div>
+          </div>
+        </div>
+        <p class="footer-desc">
+          أول استوديو تصوير ذكي مخصص للسوق السعودي والخليجي.
+          نساعد تجار المتاجر الإلكترونية على تجهيز صور منتجات احترافية بسرعة وبتكلفة منخفضة.
+        </p>
+        <div class="footer-hashtags">
+          <span class="hashtag">#مدير_تصوير</span>
+          <span class="hashtag">#سعودي_ويفهمك</span>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-btn" title="تويتر">𝕏</a>
+          <a href="#" class="social-btn" title="إنستغرام">📷</a>
+          <a href="#" class="social-btn" title="واتساب">💬</a>
+          <a href="#" class="social-btn" title="يوتيوب">▶</a>
+        </div>
+      </div>
+      <div>
+        <h4>الأقسام</h4>
+        <ul class="footer-links">
+          <li><a href="#">الرئيسية</a></li>
+          <li><a href="#studios">الاستوديوهات</a></li>
+          <li><a href="#how">كيف يعمل</a></li>
+          <li><a href="#pricing">الأسعار</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>الدعم</h4>
+        <ul class="footer-links">
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+          <li><a href="#">تواصل معنا</a></li>
+          <li><a href="#">سياسة الخصوصية</a></li>
+          <li><a href="#">الشروط والأحكام</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@soudio.sa">info@soudio.sa</a></li>
+          <li><a href="tel:+966500000000">+966 500XXXXXX</a></li>
+          <li><a href="#">المملكة العربية السعودية 🇸🇦</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p>© 2026 سعوديو — جميع الحقوق محفوظة</p>
+      <div class="made-badge">
+        <div class="made-dot"></div>
+        <span>طُوِّر بـ ذكاء 🇸🇦 في السعودية</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── Scripts ──────────────────────────────────────────────────────────────── -->
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+
+    // Open this one if it was closed
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(el);
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('mobileMenu').classList.remove('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>
